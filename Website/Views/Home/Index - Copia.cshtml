@@ -1,0 +1,251 @@
+﻿@using Website.Helpers;
+@model Website.Models.ViewModels.HomeFeatureGameViewModel
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Documento senza titolo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @Styles.Render("~/bundles/css")
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header"> <a class="navbar-brand" href="#">CottontailSummoners</a> </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Page 1</a></li>
+                    <li><a href="#">Page 2</a></li>
+                    <li><a href="#">Page 3</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div style="padding-bottom:60px;" class="container-fluid text-center">
+        <div class="row">
+            <div class="col-md-12 home-search-wrapper">
+                <div style="visibility: visible;z-index:0;" id="img-pattern"></div>
+                <div class="home-search">
+                    <h1>Cottontail summoners</h1>
+                    <p>Search summoner stats</p>
+                    <br>
+                    <form role="form" class="form-inline" method="post">
+                        <div class="form-group">
+                            <input style="width: 350px; border-radius: 0px; border-width: 1px 0px 1px 1px; float: left;" placeholder="Summoner Name" class="form-control" type="text">
+                            <select class="form-control region-select" id="region">
+                                <option value="br">BR</option>
+                                <option value="eune">EUNE</option>
+                                <option selected="" value="euw">EUW</option>
+                                <option value="kr">KR</option>
+                                <option value="las">LAS</option>
+                                <option value="lan">LAN</option>
+                                <option value="na">NA</option>
+                                <option value="oce">OCE</option>
+                                <option value="tr">TR</option>
+                                <option value="ru">RU</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <!--<input style="border-radius:0px;" value="Search" name="search" type="submit">-->
+                            <button style="border-radius:0px;" class="btn btn-default" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-inner" role="listbox">
+                <div class="row home-featuregame">
+                    @foreach (var game in Model.FeatureGame)
+                    {
+                        <div class="col-md-5">
+                            <div class="table-responsive">
+                                <table class="table table-condensed">
+                                    <thead class="blue">
+                                        <tr>
+                                            <th class="champion">Champion</th>
+                                            <th class="name">Summoner</th>
+                                            <th class="current-season">Division</th>
+                                            <th class="rw">Ranked W/L</th>
+                                            <th>Champion W/L</th>
+                                            <th class="kd"><span class="tip" title="Champion KDA The average kills, deaths and assists of this player, for this champion.">KDA</span></th>
+                                            <!--<th class="runes">Runes</th>
+                                    <th class="masteries">Masteries</th>-->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var champ in game.TeamBluePlayersData)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <div class="champion-wrap">
+                                                        <div class="champion"> <a href="#"><img src="@champ.ChampionUrl"></a> </div>
+                                                        <div class="spells"> <img class="spell1" src="@champ.Spell1Url" style="width:24px;height:24px;"> <img class="spell2" src="@champ.Spell2Url" style="width:24px;height:24px;"> </div>
+                                                    </div>
+                                                </td>
+                                                <td>@(champ.Name)</td>
+                                                <td>
+                                                    @if (champ.Tier != 0)
+                                                    {
+                                                        @Html.Raw("<div class=\"division-wrap\"><span class=\"summoner-rank " + Utility.TierToString(champ.Tier).ToLower() + "-" + champ.Division + "\">" + Utility.TierToString(champ.Tier) + " " + champ.Division + " (" + champ.LeaguePoint + ")</span> </div>");
+                                                    }
+                                                    else
+                                                    { @Html.Raw("<div class=\"division-wrap\"><span class=\"summoner-rank " + Utility.TierToString(champ.Tier).ToLower() + "-" + champ.Division + "\">" + Utility.TierToString(champ.Tier) + " </span> </div>");
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (champ.RankedWinRate != -1)
+                                                    {
+                                                        @Html.Raw("<span class=\"game-wins\">" + champ.TotalRankedWin + "</span> / <span class=\"game-losses\">" + champ.TotaleRankedLose + "</span>");
+                                                        @Html.Raw(" (" + champ.RankedWinRate + " %)");
+                                                    }
+                                                    else
+                                                    {@Html.Raw("<span class=\"game-wins\">0</span> / <span class=\"game-losses\">0</span>");
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (champ.ChampionWinRate != -1)
+                                                    {
+                                                        @Html.Raw("<span class=\"game-wins\">" + champ.TotalChampionRankedWin + "</span> / <span class=\"game-losses\">" + champ.TotalChampionRankedLose + "</span>");
+                                                        @Html.Raw(" (" + champ.ChampionWinRate + " %)");
+                                                    }
+                                                    else
+                                                    {@Html.Raw("<span class=\"game-wins\">0</span> / <span class=\"game-losses\">0</span>");
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (champ.ChampionWinRate != -1)
+                                                    {
+                                                        @Html.Raw("<span class=\"game-wins\">" + champ.ChampionAverangeKill + "</span> / <span class=\"game-losses\">" + champ.ChampionAverangeDeath + "</span> / " + champ.ChampionAverangeAssist + " (" + champ.ChampionKDA + ")");
+                                                    }
+                                                    else
+                                                    {@Html.Raw("<span class=\"game-wins\">0</span> / <span class=\"game-losses\">0</span> / 0");
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="col-md-2">
+                            <div class="featuregame-info">
+                                <div class="server"> <span>@game.Region</span> </div>
+                                <div class="mode"> <span>@game.GameMode</span> </div>
+                                <div class="timer"> <span>@game.GameStartTime</span> </div>
+                                <p>Bans</p>
+                                <div class="bans">
+                                    <div class="ban">
+                                        @foreach (var ban in game.Bans)
+                                        {
+                                            if (ban.Team == 100)
+                                            {<img src="@ban.ChampionUrl">}
+                                        }
+                                    </div>
+                                    <div class="ban">
+                                        @foreach (var ban in game.Bans)
+                                        {
+                                            if (ban.Team == 200)
+                                            {<img src="@ban.ChampionUrl">}
+                                        }
+                                    </div>
+                                </div>
+                                <div class="spectate"> <a class="btn btn-success">Spectate</a> </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="table-responsive">
+                                <table class="table table-condensed">
+                                    <thead class="purple">
+                                        <tr>
+                                            <th class="champion">Champion</th>
+                                            <th class="name">Summoner</th>
+                                            <th class="current-season">Division</th>
+                                            <th class="rw">Ranked W/L</th>
+                                            <th>Champion W/L</th>
+                                            <th class="kd"><span class="tip" title="Champion KDA The average kills, deaths and assists of this player, for this champion.">KDA</span></th>
+                                            <!--<th class="runes">Runes</th>
+                                    <th class="masteries">Masteries</th>-->
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var champ in game.TeamRedPlayersData)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <div class="champion-wrap">
+                                                        <div class="champion"> <a href="#"><img src="@champ.ChampionUrl"></a> </div>
+                                                        <div class="spells"> <img class="spell1" src="@champ.Spell1Url" style="width:24px;height:24px;"> <img class="spell2" src="@champ.Spell2Url" style="width:24px;height:24px;"> </div>
+                                                    </div>
+                                                </td>
+                                                <td>@(champ.Name)</td>
+                                                <td>
+                                                    @if (champ.Tier != 0)
+                                                    {
+                                                        @Html.Raw("<div class=\"division-wrap\"><span class=\"summoner-rank " + Utility.TierToString(champ.Tier).ToLower() + "-" + champ.Division + "\">" + Utility.TierToString(champ.Tier) + " " + champ.Division + " (" + champ.LeaguePoint + ")</span> </div>");
+                                                    }
+                                                    else
+                                                    { @Html.Raw("<div class=\"division-wrap\"><span class=\"summoner-rank " + Utility.TierToString(champ.Tier).ToLower() + "-" + champ.Division + "\">" + Utility.TierToString(champ.Tier) + " </span> </div>");
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (champ.RankedWinRate != -1)
+                                                    {
+                                                        @Html.Raw("<span class=\"game-wins\">" + champ.TotalRankedWin + "</span> / <span class=\"game-losses\">" + champ.TotaleRankedLose + "</span>");
+                                                        @Html.Raw(" (" + champ.RankedWinRate + " %)");
+                                                    }
+                                                    else
+                                                    {@Html.Raw("<span class=\"game-wins\">0</span> / <span class=\"game-losses\">0</span>");
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (champ.ChampionWinRate != -1)
+                                                    {
+                                                        @Html.Raw("<span class=\"game-wins\">" + champ.TotalChampionRankedWin + "</span> / <span class=\"game-losses\">" + champ.TotalChampionRankedLose + "</span>");
+                                                        @Html.Raw(" (" + champ.ChampionWinRate + " %)");
+                                                    }
+                                                    else
+                                                    {@Html.Raw("<span class=\"game-wins\">0</span> / <span class=\"game-losses\">0</span>");
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (champ.ChampionWinRate != -1)
+                                                    {
+                                                        @Html.Raw("<span class=\"game-wins\">" + champ.ChampionAverangeKill + "</span> / <span class=\"game-losses\">" + champ.ChampionAverangeDeath + "</span> / " + champ.ChampionAverangeAssist + " (" + champ.ChampionKDA + ")");
+                                                    }
+                                                    else
+                                                    {@Html.Raw("<span class=\"game-wins\">0</span> / <span class=\"game-losses\">0</span> / 0");
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    }
+                </div>
+                </div>
+            </div>
+    </div>
+    <footer id="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10"> CottontailSummoners isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc. </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

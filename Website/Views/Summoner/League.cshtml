@@ -1,0 +1,108 @@
+﻿@using Website.Helpers;
+@model Website.Models.ViewModels.SummonerLeagueViewModel
+
+<div class="col-md-12">
+    <div class="row league-header">
+        <div class="col-md-4">
+            <div class="league-tier">
+                <div class="tier"><img src="@("/images/tier_icons/" + @Model.Tier.ToLower() + ".png")"></div>@**@
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="league-info">
+                <div class="league-tier"> @Model.Tier </div>
+                <div class="league-name"> @Model.Name </div>
+                <ul class="nav nav-pills navbs">
+                    @{
+                        int count = 1;
+                        foreach (var item in Model.Leagues)
+                        {
+                            if (item.SummonerLeagueInfo.Count() > 0)
+                            {
+                                string active = null;
+                                if (Model.OwnerDivision == count) { active = "active"; }
+                                // @Html.Raw("<li " + active + " ><a data-toggle=\"pill\" href=\"#runepage-" + count + "\">" + count + " | " + item.Name + "</a></li>");
+                                <li class="@active"><a data-toggle="pill" href="#leaguepage-@count">@item.SummonerLeagueInfo[0].Division.ToUpper()</a></li>
+                                count++;
+                            }
+
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row tab-content">
+        @{
+            int currentPage = 1;
+
+            foreach (var item in Model.Leagues)
+            {
+                string currentActive = null;
+                int rank = 1;
+                if (Model.OwnerDivision == currentPage) { currentActive = "in active"; }
+
+                <div id="leaguepage-@currentPage" class="leaguepage-wrap col-md-12 tab-pane fade @currentActive">
+                    <table class="table league-table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" style="width:80px;"></th>
+                                <th class="text-center">Summoners</th>
+                                <th class="text-center">Wins/Losses</th>
+                                <th class="text-center">Emblems</th>
+                                <th class="text-center">Series/Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var currentDivision in item.SummonerLeagueInfo)
+                            {
+                                string IsHotStreak = currentDivision.IsHotStreak == true ? "" : "emblem-off";
+                                string IsFreshBlood = currentDivision.IsFreshBlood == true ? "" : "emblem-off";
+                                string IsVeteran = currentDivision.IsVeteran == true ? "" : "emblem-off";
+
+                                <tr>
+                                    <td class="value">@(rank++)</td>
+                                    <td class="champion-image"><a href="~/@Html.Raw("Summoner/" + Model.Region + "/" + currentDivision.PlayerOrTeamName)"><img class="img-circle tip" src="@currentDivision.ProfileIconUrl" title="" data-toggle="tooltip" data-original-title="">@currentDivision.PlayerOrTeamName</a></td>
+                                    <td class="value"><span class="game-wins">@currentDivision.Wins</span> - <span class="game-losses">@currentDivision.Losses</span> (@currentDivision.WinRate)%</td>
+                                    <td class="value"><i class="fa fa-fire emblem @IsHotStreak" data-toggle="tooltip" data-original-title="<span style='color:#ddd;font-weight:bold;font-size:14px;'>Hot Streak</span><br />Win 3 or more game in a row"></i> <i class="fa fa-trophy emblem @IsVeteran" data-toggle="tooltip" data-original-title="<span style='color:#ddd;font-weight:bold;font-size:14px;'>Veteran</span><br />Play 100 or more game in this league"></i><i class="fa fa-star emblem @IsFreshBlood" data-toggle="tooltip" data-original-title="<span style='color:#ddd;font-weight:bold;font-size:14px;'>Recruit</span><br />Recently joined the league"></i></td>
+                                    @if (currentDivision.IsInPromotion)
+                                    {
+                                        string result = "";
+                                        foreach (var c in currentDivision.SeriesProgress)
+                                        {
+                                            if(c.ToString().ToLower() == "w")
+                                            {
+                                                result += "<i class=\"fa fa-check emblem game-wins \"></i>";
+                                            }
+
+                                            if (c.ToString().ToLower() == "l")
+                                            {
+                                                result += "<i class=\"fa fa-times emblem game-losses \"></i>";
+                                            }
+
+                                            if (c.ToString().ToLower() == "n")
+                                            {
+                                                result += "<i class=\"fa fa-minus emblem\"></i>";
+                                            }
+                                        }
+                                        <td class="value">@Html.Raw(result)</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="value">@currentDivision.LeaguePoints</td>
+                                    }
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                currentPage++;
+            }
+        }
+    </div>
+    <script>
+            $("i").tooltip({ html: true, container: 'body' });
+    </script>
+</div>

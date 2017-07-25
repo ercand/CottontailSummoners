@@ -1,0 +1,29 @@
+﻿@using Website.Helpers;
+@model Website.Models.ViewModels.LeaderboardsViewModel 
+        
+<table class="table leaderboards-table">
+    <thead>
+        <tr>
+            <th class="text-center" style="width:80px;"></th>
+            <th class="text-center">Summoners</th>
+            <th class="text-center">Wins/Losses</th>
+            <th class="text-center">Tier</th>
+            <th class="text-center">Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int rank = 1;
+            foreach (var currentSummoner in Model.Leagues)
+            {
+                <tr>
+                    <td class="value">@(rank++)</td>
+                    <td class="champion-image"><a href="~/@Html.Raw("Summoner/" + Model.Region + "/" + currentSummoner.SummonerName)"><img class="img-circle tip" src="@currentSummoner.ProfileIconUrl" title="" data-toggle="tooltip" data-original-title="">@currentSummoner.SummonerName</a></td>
+                    <td class="value"><span class="game-wins">@currentSummoner.Wins</span> - <span class="game-losses">@currentSummoner.Losses</span> (@currentSummoner.WinRatio)%</td>
+                    <td class="value">@currentSummoner.Tier</td>
+                    <td class="value">@currentSummoner.LeaguePoint</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

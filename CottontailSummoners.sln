@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website", "Website\Website.csproj", "{59A6D8B4-2AC3-48BC-86D7-EED3BC3B553E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A0DCA34B-4BAF-4C20-931F-EDCD52A3DA58}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{664CBEE9-E788-497D-9E9C-6720E9C56A22}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CottontailApi", "CottontailApi\CottontailApi.csproj", "{7B8F968D-45D2-43CF-B23F-B18C10D9C896}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CottontailApiUnitTest", "CottontailApiUnitTest\CottontailApiUnitTest.csproj", "{80F914F5-A40A-45A8-AB63-BF2B41A4645D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59A6D8B4-2AC3-48BC-86D7-EED3BC3B553E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59A6D8B4-2AC3-48BC-86D7-EED3BC3B553E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59A6D8B4-2AC3-48BC-86D7-EED3BC3B553E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59A6D8B4-2AC3-48BC-86D7-EED3BC3B553E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B8F968D-45D2-43CF-B23F-B18C10D9C896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B8F968D-45D2-43CF-B23F-B18C10D9C896}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B8F968D-45D2-43CF-B23F-B18C10D9C896}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B8F968D-45D2-43CF-B23F-B18C10D9C896}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80F914F5-A40A-45A8-AB63-BF2B41A4645D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F914F5-A40A-45A8-AB63-BF2B41A4645D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F914F5-A40A-45A8-AB63-BF2B41A4645D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F914F5-A40A-45A8-AB63-BF2B41A4645D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

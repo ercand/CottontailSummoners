@@ -1,0 +1,65 @@
+﻿@using Website.Helpers;
+@model Website.Models.ViewModels.SummonerRecentMatchViewModel
+
+@{
+            foreach (var match in Model.Matchs)
+            {
+                string win = match.Win == true ? "win" : "lose";
+
+        <div class="match-wrap @win">
+            <div class="match-header">@match.QueueType - @match.DateCreation - @match.MatchDuration</div>
+            <div class="match-stats">
+                <div class="champion-and-spell">
+                    <div class="champion"> <img src="@match.OwnerPlayerStats.ChampionImageUrl" /> </div>
+                    <div class="spells"> <img class="spell1" src="@match.OwnerPlayerStats.Spell1IdImageUrl" /> <img class="spell2" src="@match.OwnerPlayerStats.Spell2IdImageUrl" /> </div>
+                </div>
+                <div class="kda">
+                    <div class="score"><span class="kill color-kill">@match.OwnerPlayerStats.Kills</span> / <span class="death color-death">@match.OwnerPlayerStats.Deaths</span> / <span class="assist color-assist">@match.OwnerPlayerStats.Assists</span></div>
+                    <div class="kda-ratio"><span class="ratio">@match.OwnerPlayerStats.KDA</span> KDA</div>
+                    <!--<div class="partecipation">47%</div>-->
+                    <div class="level">Level @match.OwnerPlayerStats.ChampionLevel</div>
+                </div>
+                <div class="stats">
+                    <div class="gold"><span class="total">@(match.OwnerPlayerStats.GoldEarnedTextual)K Gold</span> (@match.OwnerPlayerStats.GoldPerMinut g/min)</div>
+                    <div class="cs"><span class="total">@(match.OwnerPlayerStats.NeutralMinionsKilled + match.OwnerPlayerStats.MinionsKilled) CS</span> (@match.OwnerPlayerStats.MinionPerMinutTextual/min)</div>
+                    <div class="ward">@(match.OwnerPlayerStats.Wards) Wards</div>
+                </div>
+                <div class="items">
+                    <div class="build-items"> <img src="@match.OwnerPlayerStats.Item0ImageUrl" /> <img src="@match.OwnerPlayerStats.Item1ImageUrl" /> <img src="@match.OwnerPlayerStats.Item2ImageUrl" /> <img src="@match.OwnerPlayerStats.Item3ImageUrl" /> <img src="@match.OwnerPlayerStats.Item4ImageUrl" /> <img src="@match.OwnerPlayerStats.Item5ImageUrl" /> </div>
+                    <div class="trinket"> <img src="@match.OwnerPlayerStats.TrinketImageUrl" style="background-color:#ccc" /> <span class="trinket-label">Trinket</span> </div>
+                </div>
+                <div class="team-summoners">
+                    <div class="team">
+                        @{
+                            foreach (var summoner in match.PlayerStats)
+                            {
+                                if (summoner.TeamId == 100)
+                                {
+                                    <div class="summoner">
+                                        <div class="champion"><img src="@summoner.ChampionImageUrl" /></div>
+                                        <div class="name"><a href="~/@Html.Raw("Summoner/" + Model.RegionStr + "/" + summoner.SummonerName)">@summoner.SummonerName</a></div>
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                    <div class="team">
+                        @{
+                            foreach (var summoner in match.PlayerStats)
+                            {
+                                if (summoner.TeamId == 200)
+                                {
+                                    <div class="summoner">
+                                        <div class="champion"><img src="@summoner.ChampionImageUrl" /></div>
+                                        <div class="name"><a href="~/@Html.Raw("Summoner/" + Model.RegionStr + "/" + summoner.SummonerName)">@summoner.SummonerName</a></div>
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="match-details"></div>
+        </div>
+                            }
+}

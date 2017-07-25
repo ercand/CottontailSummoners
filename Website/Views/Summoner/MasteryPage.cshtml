@@ -1,0 +1,140 @@
+﻿@using System.Web;
+@using Website.Helpers;
+@model Website.Models.ViewModels.SummonerMasteryPageViewModel
+
+<div class="col-md-12">
+    <h2>Masteries</h2>
+    <ul class="nav nav-pills nav-tabs navbs">
+        @{
+            int count = 1;
+            foreach (var item in Model.Pages)
+            {
+                string active = null;
+                if (item.Current) { active = "active"; }
+                // @Html.Raw("<li " + active + " ><a data-toggle=\"pill\" href=\"#runepage-" + count + "\">" + count + " | " + item.Name + "</a></li>");
+                <li class="@active"><a data-toggle="pill" href="#masterypage-@count">@count | @item.Name</a></li>
+                count++;
+            }
+        }
+    </ul>
+    <div class="tab-content">
+        @{
+            int currentPage = 1;
+
+            foreach (var item in Model.Pages)
+            {
+                string currentActive = null;
+                if (item.Current) { currentActive = "in active"; }
+
+                <div id="masterypage-@currentPage" class="masterypage-wrap tab-pane fade @currentActive">
+                    <div class="mastery-tree ferocity">
+                        <div class="mastery-row">
+                            <div class="mastery-slot mastery-6111 @(item.MasteryList.ContainsKey(6111) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6111)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6111)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6111) ? item.MasteryList[6111] + "/5" : "0/5")</div></div>
+                            <div class="spacer"></div>
+                            <div class="mastery-slot mastery-6114 @(item.MasteryList.ContainsKey(6114) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6114)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6114)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6114) ? item.MasteryList[6114] + "/5" : "0/5")</div></div>
+                        </div>
+                        <div class="mastery-row">
+                            <div class="mastery-slot mastery-6121 @(item.MasteryList.ContainsKey(6121) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6121)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6121)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6121) ? item.MasteryList[6121] + "/1" : "0/1")</div></div>
+                            <div class="mastery-slot mastery-6122 @(item.MasteryList.ContainsKey(6122) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6122)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6122)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6122) ? item.MasteryList[6122] + "/1" : "0/1")</div></div>
+                            <div class="mastery-slot mastery-6123 @(item.MasteryList.ContainsKey(6123) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6123)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6123)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6123) ? item.MasteryList[6123] + "/1" : "0/1")</div></div>
+                        </div>
+                        <div class="mastery-row">
+                            <div class="mastery-slot mastery-6131 @(item.MasteryList.ContainsKey(6131) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6131)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6131)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6131) ? item.MasteryList[6131] + "/5" : "0/5")</div></div>
+                            <div class="spacer"></div>
+                            <div class="mastery-slot mastery-6134 @(item.MasteryList.ContainsKey(6134) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6134)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6134)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6134) ? item.MasteryList[6134] + "/5" : "0/5")</div></div>
+                        </div>
+                        <div class="mastery-row">
+                            <div class="mastery-slot mastery-6141 @(item.MasteryList.ContainsKey(6141) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6141)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6141)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6141) ? item.MasteryList[6141] + "/1" : "0/1")</div></div>
+                            <div class="mastery-slot mastery-6142 @(item.MasteryList.ContainsKey(6142) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6142)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6142)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6142) ? item.MasteryList[6142] + "/1" : "0/1")</div></div>
+                            <div class="mastery-slot mastery-6143 @(item.MasteryList.ContainsKey(6143) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6143)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6143)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6143) ? item.MasteryList[6143] + "/1" : "0/1")</div></div>
+                        </div>
+                        <div class="mastery-row">
+                            <div class="mastery-slot mastery-6151 @(item.MasteryList.ContainsKey(6151) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6151)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6151)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6151) ? item.MasteryList[6151] + "/5" : "0/5")</div></div>
+                            <div class="spacer"></div>
+                            <div class="mastery-slot mastery-6154 @(item.MasteryList.ContainsKey(6154) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6154)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6154)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6154) ? item.MasteryList[6154] + "/5" : "0/5")</div></div>
+                        </div>
+                        <div class="mastery-row">
+                            <div class="mastery-slot mastery-6161 @(item.MasteryList.ContainsKey(6161) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6161)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6161)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6161) ? item.MasteryList[6161] + "/1" : "0/1")</div></div>
+                            <div class="mastery-slot mastery-6162 @(item.MasteryList.ContainsKey(6162) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6162)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6162)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6162) ? item.MasteryList[6162] + "/1" : "0/1")</div></div>
+                            <div class="mastery-slot mastery-6164 @(item.MasteryList.ContainsKey(6164) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6164)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6164)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6164) ? item.MasteryList[6164] + "/1" : "0/1")</div></div>
+                        </div>
+                        <div class="mastery-label">
+                            FEROCITY: @item.FerocityPoint
+                        </div>
+                    </div>
+                    <div class="mastery-tree cunning">
+                        <div class="mastery-row">
+                            <div class="mastery-slot mastery-6311 @(item.MasteryList.ContainsKey(6311) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6311)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6311)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6311) ? item.MasteryList[6311] + "/5" : "0/5")</div></div>
+                            <div class="spacer"></div>
+                            <div class="mastery-slot mastery-6312 @(item.MasteryList.ContainsKey(6312) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6312)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6312)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6312) ? item.MasteryList[6312] + "/5" : "0/5")</div></div>
+                        </div>
+                        <div class="mastery-row">
+                            <div class="mastery-slot mastery-6321 @(item.MasteryList.ContainsKey(6321) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6321)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6321)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6321) ? item.MasteryList[6321] + "/1" : "0/1")</div></div>
+                            <div class="mastery-slot mastery-6322 @(item.MasteryList.ContainsKey(6322) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6322)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6322)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6322) ? item.MasteryList[6322] + "/1" : "0/1")</div></div>
+                            <div class="mastery-slot mastery-6323 @(item.MasteryList.ContainsKey(6323) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6323)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6323)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6323) ? item.MasteryList[6323] + "/1" : "0/1")</div></div>
+                        </div>
+                        <div class="mastery-row">
+                            <div class="mastery-slot mastery-6331 @(item.MasteryList.ContainsKey(6331) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6331)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6331)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6331) ? item.MasteryList[6331] + "/5" : "0/5")</div></div>
+                            <div class="spacer"></div>
+                            <div class="mastery-slot mastery-6332 @(item.MasteryList.ContainsKey(6332) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6332)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6332)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6332) ? item.MasteryList[6332] + "/5" : "0/5")</div></div>
+                        </div>
+                        <div class="mastery-row">
+                            <div class="mastery-slot mastery-6341 @(item.MasteryList.ContainsKey(6341) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6341)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6341)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6341) ? item.MasteryList[6341] + "/1" : "0/1")</div></div>
+                            <div class="mastery-slot mastery-6342 @(item.MasteryList.ContainsKey(6342) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6342)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6342)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6342) ? item.MasteryList[6342] + "/1" : "0/1")</div></div>
+                            <div class="mastery-slot mastery-6343 @(item.MasteryList.ContainsKey(6343) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6343)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6343)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6343) ? item.MasteryList[6343] + "/1" : "0/1")</div></div>
+                        </div>
+                        <div class="mastery-row">
+                            <div class="mastery-slot mastery-6351 @(item.MasteryList.ContainsKey(6351) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6351)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6351)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6351) ? item.MasteryList[6351] + "/5" : "0/5")</div></div>
+                            <div class="spacer"></div>
+                            <div class="mastery-slot mastery-6352 @(item.MasteryList.ContainsKey(6352) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6352)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6352)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6352) ? item.MasteryList[6352] + "/5" : "0/5")</div></div>
+                        </div>
+                        <div class="mastery-row">
+                            <div class="mastery-slot mastery-6361 @(item.MasteryList.ContainsKey(6361) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6361)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6361)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6361) ? item.MasteryList[6361] + "/1" : "0/1")</div></div>
+                            <div class="mastery-slot mastery-6362 @(item.MasteryList.ContainsKey(6362) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6362)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6362)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6362) ? item.MasteryList[6362] + "/1" : "0/1")</div></div>
+                            <div class="mastery-slot mastery-6363 @(item.MasteryList.ContainsKey(6363) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6363)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6363)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6363) ? item.MasteryList[6363] + "/1" : "0/1")</div></div>
+                        </div>
+                        <div class="mastery-label">
+                            CUNNING: @item.CunningPoint
+                        </div>
+                    </div>
+                    <div class="mastery-tree resolve">
+                        <div class="mastery-row">
+                            <div class="mastery-slot mastery-6211 @(item.MasteryList.ContainsKey(6211) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6211)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6211)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6211) ? item.MasteryList[6211] + "/5" : "0/5")</div></div>
+                            <div class="spacer"></div>
+                            <div class="mastery-slot mastery-6212 @(item.MasteryList.ContainsKey(6212) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6212)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6212)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6212) ? item.MasteryList[6212] + "/5" : "0/5")</div></div>
+                        </div>
+                        <div class="mastery-row">
+                            <div class="mastery-slot mastery-6221 @(item.MasteryList.ContainsKey(6221) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6221)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6221)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6221) ? item.MasteryList[6221] + "/1" : "0/1")</div></div>
+                            <div class="mastery-slot mastery-6223 @(item.MasteryList.ContainsKey(6223) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6223)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6223)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6223) ? item.MasteryList[6223] + "/1" : "0/1")</div></div>
+                            <div class="mastery-slot mastery-6222 @(item.MasteryList.ContainsKey(6222) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6222)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6222)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6222) ? item.MasteryList[6222] + "/1" : "0/1")</div></div>
+                        </div>
+                        <div class="mastery-row">
+                            <div class="mastery-slot mastery-6231 @(item.MasteryList.ContainsKey(6231) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6231)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6231)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6231) ? item.MasteryList[6231] + "/5" : "0/5")</div></div>
+                            <div class="spacer"></div>
+                            <div class="mastery-slot mastery-6232 @(item.MasteryList.ContainsKey(6232) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6232)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6232)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6232) ? item.MasteryList[6232] + "/5" : "0/5")</div></div>
+                        </div>
+                        <div class="mastery-row">
+                            <div class="mastery-slot mastery-6241 @(item.MasteryList.ContainsKey(6241) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6241)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6241)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6241) ? item.MasteryList[6241] + "/1" : "0/1")</div></div>
+                            <div class="mastery-slot mastery-6242 @(item.MasteryList.ContainsKey(6242) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6242)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6242)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6242) ? item.MasteryList[6242] + "/1" : "0/1")</div></div>
+                            <div class="mastery-slot mastery-6243 @(item.MasteryList.ContainsKey(6243) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6243)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6243)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6243) ? item.MasteryList[6243] + "/1" : "0/1")</div></div>
+                        </div>
+                        <div class="mastery-row">
+                            <div class="mastery-slot mastery-6251 @(item.MasteryList.ContainsKey(6251) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6251)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6251)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6251) ? item.MasteryList[6251] + "/5" : "0/5")</div></div>
+                            <div class="spacer"></div>
+                            <div class="mastery-slot mastery-6252 @(item.MasteryList.ContainsKey(6252) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6252)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6252)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6252) ? item.MasteryList[6252] + "/5" : "0/5")</div></div>
+                        </div>
+                        <div class="mastery-row">
+                            <div class="mastery-slot mastery-6261 @(item.MasteryList.ContainsKey(6261) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6261)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6261)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6261) ? item.MasteryList[6261] + "/1" : "0/1")</div></div>
+                            <div class="mastery-slot mastery-6262 @(item.MasteryList.ContainsKey(6262) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6262)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6262)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6262) ? item.MasteryList[6262] + "/1" : "0/1")</div></div>
+                            <div class="mastery-slot mastery-6263 @(item.MasteryList.ContainsKey(6263) ? "active" : "gray")" style="@Utility.Html.HtmlMasteryBackgroundCssString(6263)" data-placement="top" data-toggle="tooltip" title="@Utility.Html.HtmlToolTipString(item.MasteryList, 6263)"><div class="mastery-rank">@(item.MasteryList.ContainsKey(6263) ? item.MasteryList[6263] + "/1" : "0/1")</div></div>
+                        </div>
+                        <div class="mastery-label">
+                            RESOLVE: @item.ResolvePoint
+                        </div>
+                    </div>
+                </div>
+                currentPage++;
+            }
+        }
+    </div>
+</div>

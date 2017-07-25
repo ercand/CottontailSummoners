@@ -1,0 +1,188 @@
+﻿@using Website.Helpers;
+@model Website.Models.ViewModels.SummonerViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Description = "League of Legends (LoL) Summoner Search for " + @Model.SummonerName + " in " + @Model.RegionName + ", Stats, Replay, Spectating, Current Game, Ranking, Match History";
+    ViewBag.Title = @Model.SummonerName + " - " + @Model.RegionName + " - League of Legends Summoner Search";
+    ViewBag.Home = "active";
+}
+
+<div class="summoner-header">
+    <div class="container summoner-wrap border-leftright" style="background-image:url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/@(Model.MostPlayedChampions[0] != null ? Model.MostPlayedChampions[0].ChampionName.Replace(" ", "") : "")_0.jpg)">
+        <div style="visibility: visible;z-index:0;" id="img-pattern"></div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="summonerProfileWrap">
+                    <div class="icon" style="background-image:url(@Model.ProfileIconUrl)"></div>
+                    <div class="profile">
+                        <div class="info">
+                            <div><span class="name">@Model.SummonerName</span></div> <br />
+                            <span class="level">Level @Model.SummonerLevel</span> - <span class="region">@Model.RegionName</span>
+                        </div>
+                        <div class="buttons">
+                            <button class="btn btn-default btn-sm pagerefresh" data-account-id="@Model.AccountId" data-region="@Model.RegionInt">Refresh</button>
+                            <button class="btn btn-default btn-sm livegame" data-summoner-id="@Model.RiotSummonerID" data-region="@Model.RegionInt">Live Game</button>
+                        </div>
+                        <span class="last-update">@Model.LastUpdate</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="summonertier-wrap" @(Model.RankDivision != "" ? "" : "style=visibility:hidden;")>
+                    <div class="tier"> <img src="/images/tier_icons/@(Model.RankTier + "_" + Model.RankDivision.ToLower() + ".png")" /> </div>
+                    <div class="tier-info">
+                        <p><span style="font-weight:bold;font-size:16px;">Ranked Solo</span></p>
+                        <p>@Model.RankTier.ToUpper() @Model.RankDivision.ToUpper() - @Model.RankedLP <span style="font-weight:bold;">LP</span></p>
+                        <p><span class="game-wins">@Model.RankedWin</span>W - <span class="game-losses">@Model.RankedLose</span>L</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container livegame-wrap"></div>
+<div class="summonermenu-wrap">
+    <div class="container border-leftright">
+        <div class="row no-gutter">
+            <div class="col-md-12">
+                <div class="summonerMenu">
+                    <dl class="MenuList tabHeaders">
+                        <dd class="Item tabHeader active" data-tab-show-class="summary" data-summoner-id="@Model.RiotSummonerID" data-region="@Model.RegionInt"><a href="/summoner/@Model.RegionStr.ToLower()/@Model.SummonerName">Summary</a></dd>
+                        <dd class="Item tabHeader" data-tab-show-class="champions" data-summoner-id="@Model.RiotSummonerID" data-region="@Model.RegionInt"><a href="/summoner/ChampionStats">Campioni</a></dd>
+                        <dd class="Item tabHeader" data-tab-show-class="leagues" data-summoner-id="@Model.RiotSummonerID" data-region="@Model.RegionInt"><a href="/summoner/League">Lega</a></dd>
+                        <dd class="Item tabHeader" data-tab-show-class="matchs" data-summoner-id="@Model.RiotSummonerID" data-region="@Model.RegionInt"><a href="/summoner/Match">Partite</a></dd>
+                        <dd class="Item tabHeader" data-tab-show-class="runes" data-summoner-id="@Model.RiotSummonerID" data-region="@Model.RegionInt" data-tooltipname="runeSlot"><a href="/summoner/RunePage">Runa</a></dd>
+                        <dd class="Item tabHeader" data-tab-show-class="masteries" data-summoner-id="@Model.RiotSummonerID" data-region="@Model.RegionInt" data-tooltipname="mastery-slot"><a href="/summoner/MasteryPage">Maestrie</a></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="summoner-content-wrap" class="container content-wrap border-leftright">
+    <div id="summary" class="row" data-already-loaded="true">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="recent-20game">
+                        <div class="title"> <span class="caption">Last @Model.RecentMatchs.RecentPlayed games</span> </div>
+                        <div class="recent-winrate">
+                            <div class="recentgame-winratio"><span class="game-wins">@Model.RecentMatchs.RecentWin</span> Wins / <span class="game-losses">@Model.RecentMatchs.RecentLosses</span> Lose</div>
+                            <div class="winrate-bar">
+                                <div class="win-overlay" style="width:@(Model.RecentMatchs.PercentageWinRate)%;"></div>
+                                <span class="value">@(Model.RecentMatchs.PercentageWinRate)%</span>
+                            </div>
+                        </div>
+                        <div class="kda">
+                            <div class="score"><span class="kill color-kill">@Model.RecentMatchs.AvgKillsTextual</span> / <span class="death color-death">@Model.RecentMatchs.AvgDeathsTextual</span> / <span class="assist color-assist">@Model.RecentMatchs.AvgAssistsTextual</span></div>
+                            <div class="kda-ratio">Averange <span class="ratio">@Model.RecentMatchs.KdaTextual</span> KDA</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="gamelist-wrap">
+                @{
+                    foreach (var match in Model.RecentMatchs.Matchs)
+                    {
+                        string win = match.Win == true ? "win" : "lose";
+
+                        <div class="match-wrap @win">
+                            <div class="match-header">@match.QueueType - @match.DateCreation - @match.MatchDuration</div>
+                            <div class="match-stats">
+                                <div class="champion-and-spell">
+                                    <div class="champion"> <img src="@match.OwnerPlayerStats.ChampionImageUrl" /> </div>
+                                    <div class="spells"> <img class="spell1" src="@match.OwnerPlayerStats.Spell1IdImageUrl" /> <img class="spell2" src="@match.OwnerPlayerStats.Spell2IdImageUrl" /> </div>
+                                </div>
+                                <div class="kda">
+                                    <div class="score"><span class="kill color-kill">@match.OwnerPlayerStats.Kills</span> / <span class="death color-death">@match.OwnerPlayerStats.Deaths</span> / <span class="assist color-assist">@match.OwnerPlayerStats.Assists</span></div>
+                                    <div class="kda-ratio"><span class="ratio">@match.OwnerPlayerStats.KDA</span> KDA</div>
+                                    <!--<div class="partecipation">47%</div>-->
+                                    <div class="level">Level @match.OwnerPlayerStats.ChampionLevel</div>
+                                </div>
+                                <div class="stats">
+                                    <div class="gold"><span class="total">@(match.OwnerPlayerStats.GoldEarnedTextual)K Gold</span> (@match.OwnerPlayerStats.GoldPerMinut g/min)</div>
+                                    <div class="cs"><span class="total">@(match.OwnerPlayerStats.NeutralMinionsKilled + match.OwnerPlayerStats.MinionsKilled) CS</span> (@match.OwnerPlayerStats.MinionPerMinutTextual/min)</div>
+                                    <div class="ward">@match.OwnerPlayerStats.Wards Wards</div>
+                                </div>
+                                <div class="items">
+                                    <div class="build-items"> <img src="@match.OwnerPlayerStats.Item0ImageUrl" /> <img src="@match.OwnerPlayerStats.Item1ImageUrl" /> <img src="@match.OwnerPlayerStats.Item2ImageUrl" /> <img src="@match.OwnerPlayerStats.Item3ImageUrl" /> <img src="@match.OwnerPlayerStats.Item4ImageUrl" /> <img src="@match.OwnerPlayerStats.Item5ImageUrl" /> </div>
+                                    <div class="trinket"> <img src="@match.OwnerPlayerStats.TrinketImageUrl" style="background-color:#ccc" /> <span class="trinket-label">Trinket</span> </div>
+                                </div>
+                                <div class="team-summoners">
+                                    <div class="team">
+                                        @{
+                                            foreach (var summoner in match.PlayerStats)
+                                            {
+                                                if (summoner.TeamId == 100)
+                                                {
+                                                    <div class="summoner">
+                                                        <div class="champion"><img src="@summoner.ChampionImageUrl" /></div>
+                                                        <div class="name"><a href="~/@Html.Raw("Summoner/" + Model.RegionStr + "/" + summoner.SummonerName)">@summoner.SummonerName</a></div>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                    </div>
+                                    <div class="team">
+                                        @{
+                                            foreach (var summoner in match.PlayerStats)
+                                            {
+                                                if (summoner.TeamId == 200)
+                                                {
+                                                    <div class="summoner">
+                                                        <div class="champion"><img src="@summoner.ChampionImageUrl" /></div>
+                                                        <div class="name"><a href="~/@Html.Raw("Summoner/" + Model.RegionStr + "/" + summoner.SummonerName)">@summoner.SummonerName</a></div>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="match-details"></div>
+                        </div>
+                                            }
+                }
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="most-played-champion-wrap">
+                <h4>Season @GlobalCustomConstants.CurrentSeasonNumber most played champions</h4>
+                <div class="champions-list-wrap">
+                    @{
+                        foreach (var championStats in Model.MostPlayedChampions)
+                        {
+                            <div class="championStats-wrap">
+                                <div class="champion"> <img src="@championStats.ChampionImageUrl" /> </div>
+                                <div class="info">
+                                    <div class="champion-name"> @championStats.ChampionName </div>
+                                    <div class="cs"> <span class="avg">@championStats.AvgMinionsKilledTextual</span> CS </div>
+                                    <div class="gold"> <span class="avg">@championStats.AvgGoldEarnedTextual</span> Golds </div>
+                                </div>
+                                <div class="kda">
+                                    <div class="avg-score"><span class="color-kill">@championStats.AvgKillsTextual</span> / <span class="color-death">@championStats.AvgDeathsTextual</span> / <span class="color-assist">@championStats.AvgAssistsTextual</span></div>
+                                    <div class="kda-ratio"><span class="ratio">@(championStats.KdaTextual):1</span> KDA</div>
+                                </div>
+                                <div class="played">
+                                    <div class="total"><span class="game">@championStats.GamePlayed</span> Games</div>
+                                    <div class="win-rate">@((int)(((float)championStats.Wins / (float)championStats.GamePlayed) * 100.0))%</div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="matchs" class="row">
+    </div>
+    <div id="runes" class="row">
+    </div>
+    <div id="masteries" class="row">
+    </div>
+    <div id="champions" class="row champion-stats-wrap">
+    </div>
+    <div id="leagues" class="row league-wrap">
+    </div>
+</div>

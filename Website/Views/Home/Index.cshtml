@@ -1,0 +1,95 @@
+﻿@using Website.Helpers;
+@model Website.Models.ViewModels.HomeFeatureGameViewModel
+@{
+    Layout = null;
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Documento senza titolo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/custom")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+        $(document).ready(function () {
+            $.post("/FeatureGame", {}, function (data) {
+                $("#myCarousel").html(data);
+
+                // Cronometro del tempo dei game
+                $(".timer>span").CottontailTimer();
+                
+                $(".carousel").carousel();
+            });
+            
+        });
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header"> <a class="navbar-brand" href="#">CottontailSummoners</a> </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="~/Leaderboards">Leaderboards</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div style="padding-bottom:60px;" class="container-fluid text-center">
+        <div class="row">
+            <div class="col-md-12 home-search-wrapper">
+                <div style="visibility: visible;z-index:0;" id="img-pattern"></div>
+                <div class="home-search">
+                    <h1>Cottontail summoners</h1>
+                    <p>Search summoner stats</p>
+                    <br>
+                    <form role="form" class="form-inline" method="post">
+                        <div class="form-group">
+                            <input style="width: 350px; border-radius: 0px; border-width: 1px 0px 1px 1px; float: left;" placeholder="Summoner Name" class="form-control" type="text" name="summonername">
+                            <select class="form-control region-select" id="region" name="region">
+                                <option value="br">BR</option>
+                                <option value="eune">EUNE</option>
+                                <option selected="" value="euw">EUW</option>
+                                <option value="kr">KR</option>
+                                <option value="las">LAS</option>
+                                <option value="lan">LAN</option>
+                                <option value="na">NA</option>
+                                <option value="oce">OCE</option>
+                                <option value="tr">TR</option>
+                                <option value="ru">RU</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <!--<input style="border-radius:0px;" value="Search" name="search" type="submit">-->
+                            <button style="border-radius:0px;" class="btn btn-default" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="myCarousel" class="carouse0l slide0" data-ride="carousel0">
+
+            <div class="slice">
+                <div data-loader="circle-side"></div>
+                <div>Feature game loading...</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10"> CottontailSummoners isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc. </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

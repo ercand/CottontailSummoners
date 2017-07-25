@@ -1,0 +1,79 @@
+﻿@using Website.Helpers;
+@model Website.Models.ViewModels.LeaderboardsViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+    ViewBag.Leaderboards = "active";
+}
+<script>
+    $(document).ready(function () {
+        $("#selectLeaderboard").change(function (e) {
+            var region = $(this).val();
+            $.post("/GetLeaderboard", { region: region }, function (data) {
+                $(".leaderboards-table-wrap").html(data);
+            });
+        });
+    });
+</script>
+<div id="leaderboards-wrap" class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 style="text-align: left;">Summoner Leaderboards</h2>
+        </div>
+        <div class="col-md-6" style="margin-top: 15px;">
+            <form role="form" class="form-inline navbar-form navbar-right" style="display: inline-block;" method="post">
+                <div class="form-group">
+                    <input style="width: 250px; border-radius: 0px; border-width: 1px 0px 1px 1px; float: left;" placeholder="Summoner Name" class="form-control" type="text">
+                </div>
+                <div class="form-group">
+                    <!--<input style="border-radius:0px;" value="Search" name="search" type="submit">-->
+                    <button style="border-radius:0px;" class="btn btn-default disabled" type="button">Search</button>
+                </div>
+            </form>
+            <select class="form-control" id="selectLeaderboard" style="margin:8px 0; width:auto;">
+                <option selected="" value="na">North America</option>
+                <option value="euw">Europe West</option>
+                <option value="eune">Europe Nordic & East</option>
+                <option value="kr">Korea</option>
+                <option value="las">Latin America South</option>
+                <option value="lan">Latin America North</option>
+                <option value="br">Brazil</option>
+                <option value="oce">Oceania</option>
+                <option value="tr">Turkey</option>
+                <option value="ru">Russia</option>
+                <option value="jp">Japan</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 leaderboards-table-wrap">
+            <table class="table leaderboards-table">
+                <thead>
+                    <tr>
+                        <th class="text-center" style="width:80px;"></th>
+                        <th class="text-center">Summoners</th>
+                        <th class="text-center">Wins/Losses</th>
+                        <th class="text-center">Tier</th>
+                        <th class="text-center">Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int rank = 1;
+                        foreach (var currentSummoner in Model.Leagues)
+                        {
+                            <tr>
+                                <td class="value">@(rank++)</td>
+                                <td class="champion-image"><a href="~/@Html.Raw("Summoner/" + Model.Region + "/" + currentSummoner.SummonerName)"><img class="img-circle tip" src="@currentSummoner.ProfileIconUrl" title="" data-toggle="tooltip" data-original-title="">@currentSummoner.SummonerName</a></td>
+                                <td class="value"><span class="game-wins">@currentSummoner.Wins</span> - <span class="game-losses">@currentSummoner.Losses</span> (@currentSummoner.WinRatio)%</td>
+                                <td class="value">@currentSummoner.Tier</td>
+                                <td class="value">@currentSummoner.LeaguePoint</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

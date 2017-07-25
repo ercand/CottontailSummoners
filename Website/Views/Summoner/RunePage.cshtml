@@ -1,0 +1,61 @@
+﻿@using Website.Helpers;
+@model Website.Models.ViewModels.SummonerRunePageViewModel
+
+<div class="col-md-12">
+    <h2>Runes</h2>
+    <ul class="nav nav-pills nav-tabs navbs">
+        @{
+            int count = 1;
+            foreach (var item in Model.Pages)
+            {
+                string active = null;
+                if (item.Current) { active = "active"; }
+                // @Html.Raw("<li " + active + " ><a data-toggle=\"pill\" href=\"#runepage-" + count + "\">" + count + " | " + item.Name + "</a></li>");
+                <li class="@active"><a data-toggle="pill" href="#runepage-@count">@count | @item.Name</a></li>
+                count++;
+            }
+        }
+    </ul>
+    <div class="tab-content">
+        @{
+            int currentPage = 1;
+            
+            foreach (var item in Model.Pages)
+            {
+                string currentActive = null;
+                if (item.Current) { currentActive = "in active"; }
+
+                <div id="runepage-@currentPage" class="runepage-wrap tab-pane fade @currentActive">
+                    <div class="rune-page">
+                        @foreach (var page in item.RuneList)
+                        {
+                            string runeslotString = "runeSlot" + page.SlotId;
+                            if (page.RuneId == 0)
+                            {
+                                <div class="runeSlot @runeslotString empty" data-placement="top" data-toggle="tooltip" title=""></div>
+                            }
+                            else
+                            {
+                                <div class="runeSlot @runeslotString" data-placement="top" data-toggle="tooltip" title="@page.SanitizedDescription"><img src="@page.ImageUrl" /></div>
+                            }
+                        }
+                    </div>
+                    <div class="statisticsList-wrapper">
+                        @foreach (var stats in item.RuneDetails)
+                        {
+                            <div class="item">
+                                <div class="image"><img src="@stats.ImageUrl" /></div>
+                                <div class="count">@("x" + @stats.Count)</div>
+                                <div class="text">
+                                    <div class="rune-name">@stats.Name</div>
+                                    <div class="rune-description">@stats.Description</div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                currentPage++;
+            }
+        }
+    </div>
+</div>

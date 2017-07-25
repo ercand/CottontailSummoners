@@ -1,0 +1,585 @@
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700");
+/* CSS Document */
+body{font: 13px/1.4 "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;background-color:#eee;}
+html{position:relative;}
+html,body{min-height:100%;}
+.navbar{border:0px;margin:0px;}
+.game-wins{color:#009600;}
+.game-losses{color:#F50000;}
+.color-kill{color:#009600;}
+.color-death{color:#F50000;}
+.color-assist{color:orange;}
+/* bootstrap */
+.nav-pills>li{margin: 0 10px 5px 0;}
+.nav-pills>li>a{
+    border: 1px solid rgb(191, 191, 191);
+	padding:5px 10px;
+}
+/*======================================
+=            NO GUTTER CODE            =
+======================================*/
+.no-gutter > [class*='col-'] {
+    padding-right:0;
+    padding-left:0;
+}
+/* HOME */
+.home-search-wrapper{
+	background: #243e54 url("img/Teemo_5.jpg") repeat scroll 0 -350px;
+	height: 350px;
+	color: #F0F0F0;
+	box-shadow: inset 0 0 150px rgba(0,0,0,.5);
+	position:relative;
+}
+.home-search{
+	position: absolute;
+  top: 50%;
+  left: 20px;
+  right: 20px;
+  padding: 20px;
+  transform: translateY(-50%);
+  overflow: hidden;
+}
+.region-select{
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	background-color:#1B1B1B;
+	color:#eee;
+	font-weight:bold;
+	border-width: 1px 1px 1px 0;
+	border-radius:0px;
+}
+.home-featuregame{padding-top: 15px;}
+.home-featuregame tbody, .livegame-wrap tbody{border:1px solid #bbb;border-top:none;}
+.home-featuregame thead, .livegame-wrap thead{border-left:1px solid #0d0d0d;border-right:1px solid #0d0d0d;border-bottom:none;border-top:none;}
+.home-featuregame th, .livegame-wrap th{border:0 solid red !important;color:#EFEFEF;background-color:#0D0D0D;text-align:center;white-space:nowrap;}
+.home-featuregame thead.purple, .livegame-wrap thead.purple {border-bottom:4px solid #8813E1;}
+.home-featuregame thead.blue, .livegame-wrap thead.blue {border-bottom:4px solid #238FFE;}
+.home-featuregame img{}
+.home-featuregame td{vertical-align:middle !important;white-space:nowrap;}
+
+.champion-wrap{display:flex;}
+.champion-wrap .champion{margin-right:10px;}
+.champion-wrap .champion img{height:48px;width:48px}
+.champion-wrap .spells{height:48px;position:relative;width:24px;}
+.champion-wrap .spells img.spell1{position:absolute;top:0;left:0;}
+.champion-wrap .spells img.spell2{position:absolute;bottom:0;left:0;}
+
+.division-wrap{white-space:nowrap;line-height:32px;}
+.home-featuregame .summoner-rank{white-space:nowrap;position:relative;padding-left: 32px;display:block;}
+.home-featuregame .summoner-rank:before{background:url(../images/tier_icons/lol-tiers.png) no-repeat top left;height:32px;width:32px;content:'';position:absolute;top:0;left:0;}
+.home-featuregame .rank{}
+.home-featuregame .bronze-0:before{background-position: 0px 9px;}
+.home-featuregame .bronze-1:before{background-position: -32px 0px;}
+.home-featuregame .bronze-2:before{background-position: -64px 0px;}
+.home-featuregame .bronze-3:before{background-position: -96px 0px;}
+.home-featuregame .bronze-4:before{background-position: -128px 0px;}
+.home-featuregame .bronze-5:before{background-position: -160px 0px;}
+
+.home-featuregame .silver-0:before{background-position: 0px -32px;}
+.home-featuregame .silver-1:before{background-position: -32px -32px;}
+.home-featuregame .silver-2:before{background-position: -64px -32px;}
+.home-featuregame .silver-3:before{background-position: -96px -32px;}
+.home-featuregame .silver-4:before{background-position: -128px -32px;}
+.home-featuregame .silver-5:before{background-position: -160px -32px;}
+
+.home-featuregame .gold-0:before{background-position: 0px -64px;}
+.home-featuregame .gold-1:before{background-position: -32px -64px;}
+.home-featuregame .gold-2:before{background-position: -64px -64px;}
+.home-featuregame .gold-3:before{background-position: -96px -64px;}
+.home-featuregame .gold-4:before{background-position: -128px -64px;}
+.home-featuregame .gold-5:before{background-position: -160px -64px;}
+
+.home-featuregame .platinum-0:before{background-position: 0px -96px;}
+.home-featuregame .platinum-1:before{background-position: -32px -96px;}
+.home-featuregame .platinum-2:before{background-position: -64px -96px;}
+.home-featuregame .platinum-3:before{background-position: -96px -96px;}
+.home-featuregame .platinum-4:before{background-position: -128px -96px;}
+.home-featuregame .platinum-5:before{background-position: -160px -96px;}
+
+.home-featuregame .diamond-0:before{background-position: 0px -128px;}
+.home-featuregame .diamond-1:before{background-position: -32px -128px;}
+.home-featuregame .diamond-2:before{background-position: -64px -128px;}
+.home-featuregame .diamond-3:before{background-position: -96px -128px;}
+.home-featuregame .diamond-4:before{background-position: -128px -128px;}
+.home-featuregame .diamond-5:before{background-position: -160px -128px;}
+
+.home-featuregame .challenger-1:before{background-position: 0px -160px;}
+.home-featuregame .master-1:before{background-position: -32px -160px;}
+.home-featuregame .unranked-0:before{background-position: -64px -160px;}
+
+.featuregame-info{padding-top:20px;}
+.featuregame-info > p{font-weight:bold;}
+
+.featuregame-info .timer{padding:20px;font-size:40px;}
+.featuregame-info .server{font-weight:bold;font-size:30px;}
+.featuregame-info .mode{font-size:16px;}
+.featuregame-info .bans{display:flex;justify-content:center;}
+.featuregame-info .bans .ban{padding:0 15px;}
+.featuregame-info .bans img{height:32px;width:32px;margin: 0px 2px;}
+.featuregame-info .spectate{padding:15px;}
+/**/
+#img-pattern {
+    background: transparent url("img/pattern.png") repeat scroll 0 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    width: 100%;
+    z-index: 1;
+}
+/*-------------*/
+/* Summoner */
+/*-------------*/
+.border-leftright{border-left:1px solid #000;border-right:1px solid #000;}
+.summoner-header{background-color:#eee;border-top:1px solid #000;text-shadow: 1px 1px 3px #000;color:#fff;}
+.summoner-wrap{
+background-color:#fff;margin-top:20px;
+background-image:url(../images/FiddleSticks_7.jpg);
+position:relative;
+background-position: 0 -110px;
+overflow:hidden;
+border-radius: 6px 6px 0px 0px;
+border-bottom:0 solid #000;
+border-top:1px solid #000;
+padding:25px;
+}
+
+.summonerProfileWrap{display:flex;display: -webkit-flex;}
+.summonerProfileWrap>.icon{width:128px;height:128px;border:1px solid #000000;box-shadow: inset 0px 0px 5px #000000;border-radius:3px;}
+.summonerProfileWrap>.profile{padding: 0 20px;text-align:center;}
+.summonerProfileWrap>.profile>.info{margin-bottom:20px;}
+.summonerProfileWrap>.profile>.info>span.name{font-size:30px;font-weight:800;}
+.summonerProfileWrap>.profile>.buttons>button{border-radius:0px;}
+.summonerProfileWrap>.profile .last-update{ font-size: 11px;}
+
+.summonertier-wrap{display:flex;display:-webkit-flex;}
+.summonertier-wrap>.tier img{height:128px;width:128px;}
+.summonertier-wrap>.tier-info{padding: 0 10px;display:flex;display:-webkit-flex;flex-direction:column;justify-content:center;-webkit-flex-direction:column;-webkit-justify-content:center;}
+
+.summonermenu-wrap{}
+.summonerMenu{background-color:#111111;font-size:0;}
+.summonerMenu>dl{margin:0;}
+.summonerMenu>.MenuList>.Item{display: inline-block;list-style: none;}
+.summonerMenu>.MenuList>.Item>a {
+    display: block;
+    min-width: 70px;
+    height: 39px;
+    /*border: 1px solid #000;
+	border-bottom: 0px solid #f5f5f5;
+	border-left: 0px solid #f5f5f5;*/
+    padding:0 6px;
+    color: #fff;
+    font-size: 13px;
+	font-weight:bold;
+    line-height: 40px;
+    text-decoration: none;
+    text-align: center;
+}
+.summonerMenu>.MenuList>.Item>a:hover{background-color:#ee8601;}
+.summonerMenu>.MenuList>.Item.active>a {
+   /* border-bottom: 1px solid #f5f5f5;*/
+    background: #ee8601;
+    color: #fff;
+}
+
+.content-wrap{
+	padding-top:20px;
+	min-height:800px;
+	background-color:#fff;
+	border-bottom:1px solid #000;
+	margin-bottom:80px;
+}
+.match-wrap{font-size:12px;color:#505050;border:1px solid #ccc;margin-bottom:15px;}
+.match-wrap>.match-header{
+	color:#202020;
+    padding: 0 5px;
+    /* text-shadow: 1px 1px 1px #2b2b2b; */
+    height: 25px;
+    line-height: 25px;
+    font-weight: 700;
+	font-size:12px;}
+.match-wrap.win>.match-header{background-color: #72CCF5;}
+.match-wrap.lose>.match-header{background-color:#f46c65;}
+.match-wrap.win{background-color:#D0ECF9;/*#f5fafe;*/}
+.match-wrap.lose{background-color:#fdeae9;}
+.match-wrap>.match-stats{display:table;width:100%;table-layout:fixed;padding:5px 0;}
+.match-wrap>.match-stats>.champion-and-spell,.match-wrap>.match-stats>.kda,.match-wrap>.match-stats>.stats,.match-wrap>.match-stats>.items,.match-wrap>.match-stats>.team-summoners{display:table-cell;vertical-align: middle;}
+
+.match-wrap>.match-stats>.champion-and-spell{position:relative;width:120px;padding-left:10px;}
+.match-wrap>.match-stats>.champion-and-spell>.champion{display:table-cell;vertical-align:middle;}
+.match-wrap>.match-stats>.champion-and-spell>.champion img{height:64px;width:64px;}
+.match-wrap>.match-stats>.champion-and-spell>.spells{display:table-cell;position:relative;height:64px;width:32px;}
+.match-wrap>.match-stats>.champion-and-spell>.spells img{height:30px;width:30px;}
+.match-wrap>.match-stats>.champion-and-spell>.spells img.spell1{position:absolute;top:0;left:5px;}
+.match-wrap>.match-stats>.champion-and-spell>.spells img.spell2{position:absolute;bottom:0;left:5px;}
+
+.match-wrap>.match-stats>.kda{font-size:12px;font-weight:bold;text-align:center;width:100px;}
+.match-wrap>.match-stats>.kda>.score{font-size:16px;white-space:nowrap;margin-bottom:5px;}
+.match-wrap>.match-stats>.kda>.score>.kill{}
+.match-wrap>.match-stats>.kda>.score>.death{}
+.match-wrap>.match-stats>.kda>.score>.assist{}
+.match-wrap>.match-stats>.kda>.kda-ratio{color:#909090;}
+.match-wrap>.match-stats>.kda>.kda-ratio>.ratio{color:#202020;}
+.match-wrap>.match-stats>.kda>.level{font-size:11px;font-weight:600;}
+
+.match-wrap>.match-stats>.stats{text-align:center;}
+.match-wrap>.match-stats>.stats>.gold>.total{color:#202020;font-weight:600;}
+.match-wrap>.match-stats>.stats>.cs>.total{color:#202020;font-weight:600;}
+.match-wrap>.match-stats>.stats>.ward{color:#202020;font-weight:600;}
+
+.match-wrap>.match-stats>.items{width:150px;padding-left:5px;}
+.match-wrap>.match-stats>.items img{width:32px;height:32px;margin:0 2px 2px 0;border-radius:5px;}
+.match-wrap>.match-stats>.items>.build-items{display:table-cell;font-size:0;margin:0 4px;}
+.match-wrap>.match-stats>.items>.trinket{display:table-cell;vertical-align:middle;width:36px;}
+.match-wrap>.match-stats>.items>.trinket>.trinket-label{font-size:10px;}
+
+.match-wrap>.match-stats>.team-summoners{width:220px;font-size:0;white-space:nowrap;padding-left:10px;}
+.match-wrap>.match-stats>.team-summoners>.team{width:50%;display:inline-block;font-size:12px;}
+.match-wrap>.match-stats>.team-summoners>.team>.summoner div{display:inline-block;}
+.match-wrap>.match-stats>.team-summoners>.team>.summoner>.champion img{width:16px;height:16px;}
+.match-wrap>.match-stats>.team-summoners>.team>.summoner>.name{text-overflow:ellipsis;white-space:nowrap;overflow:hidden;display:inline-block;width:80px;vertical-align:middle;}
+
+/*most played champion*/
+.most-played-champion-wrap h4{padding:5px;}
+.most-played-champion-wrap{border:1px solid #ccc;}
+.most-played-champion-wrap>.champions-list-wrap{background-color:#f8f8f8;}
+.most-played-champion-wrap>.champions-list-wrap>.championStats-wrap{display:table;width:100%;table-layout:fixed;text-align:center;border-top:1px solid #ccc;;color:#888;}
+.most-played-champion-wrap .championStats-wrap>.champion,.most-played-champion-wrap .championStats-wrap>.info,.most-played-champion-wrap .championStats-wrap>.kda,.most-played-champion-wrap .championStats-wrap>.played{display:table-cell;vertical-align:middle;padding:5px;}
+
+.most-played-champion-wrap .championStats-wrap>.champion{text-align:left;width:60px;}
+.most-played-champion-wrap .championStats-wrap>.champion img{height:46px;width:46px;}
+
+.most-played-champion-wrap .championStats-wrap>.info{text-align:left;font-size:11px;}
+.most-played-champion-wrap .championStats-wrap>.info>.champion-name{font-size:14px;font-weight:bold;color:#202020;}
+.most-played-champion-wrap .championStats-wrap>.info>.cs>.avg,.most-played-champion-wrap .championStats-wrap>.info>.gold>.avg,.most-played-champion-wrap .championStats-wrap>.kda>.kda-ratio>.ratio,.most-played-champion-wrap .championStats-wrap>.played>.total>.game,.most-played-champion-wrap .championStats-wrap>.played>.win-rate{font-weight:bold;}
+.most-played-champion-wrap .championStats-wrap>.played>.win-rate{font-size:15px;}
+
+/* Recent 20 game */
+.recent-20game{text-align:center;display:table;width:100%;table-layout:fixed;border-bottom:1px solid #eeeeee;border-top:1px solid #eeeeee;margin-bottom:10px;}
+.recent-20game .recent-winrate,.recent-20game>.kda,.recent-20game>.title{display:table-cell;padding:10px 0;vertical-align:middle;}
+.recent-20game .recent-winrate>.recentgame-winratio{margin-bottom:10px;}
+.recent-20game .recent-winrate>.winrate-bar{border:1px solid #999;background-color:#f46c65;width:200px; height:30px;vertical-align:middle;margin:0 auto;position:relative;}
+.recent-20game .recent-winrate>.winrate-bar>.value{position:relative;vertical-align:middle;line-height:26px;font-weight:bold;}
+.recent-20game .recent-winrate>.winrate-bar>.win-overlay{background-color:#72CCF5;height:100%;line-height: 26px;position:absolute;top:0;left:0;}
+
+.recent-20game>.title{width:150px;}
+.recent-20game>.kda>.score{font-size:18px;font-weight:bold;margin-bottom:5px;}
+.recent-20game>.kda>.kda-ratio .ratio{font-weight:600;}
+
+/* Runes */
+.runepage-wrap{position:relative;}
+.runepage-wrap>.rune-page{background-image:url(img/rune-bg.png);position:relative;width:656px;height:436px;}
+.rune-page .runeSlot {position: absolute;z-index: 2;}
+.rune-page .runeSlot img{height:55px;width:49px;}
+.rune-page .runeSlot28 img,.rune-page .runeSlot29 img,.rune-page .runeSlot30 img{height:100px !important;width:100px !important;}
+.runeSlot.red,
+.runeSlot.yellow,
+.runeSlot.blue {width:48px;height:54px;background-size:48px;}
+.runeSlot.black {width:96px;height:96px;background-size:96px;}
+.rune-page .runeSlot1 {top:370px;left:24px;}
+.rune-page .runeSlot2 {top:370px;left:86px;}
+.rune-page .runeSlot3 {top:371px;left:158px;}
+.rune-page .runeSlot4 {top:312px;left:8px;}
+.rune-page .runeSlot5 {top:311px;left:70px;}
+.rune-page .runeSlot6 {top:323px;left:125px;}
+.rune-page .runeSlot7 {top:254px;left:29px;}
+.rune-page .runeSlot8 {top:222px;left:76px;}
+.rune-page .runeSlot9 {top:264px;left:113px;}
+
+.rune-page .runeSlot10 {top:185px;left:38px;}
+.rune-page .runeSlot11 {top:138px;left:66px;}
+.rune-page .runeSlot12 {top:179px;left:107px;}
+.rune-page .runeSlot13 {top:112px;left:119px;}
+.rune-page .runeSlot14 {top:70px;left:154px;}
+.rune-page .runeSlot15 {top:43px;left:204px;}
+.rune-page .runeSlot16 {top:24px;left:265px;}
+.rune-page .runeSlot17 {top:5px;left:343px;}
+.rune-page .runeSlot18 {top:55px;left:371px;}
+
+.rune-page .runeSlot19 {top:6px;left:399px;}
+.rune-page .runeSlot20 {top:8px;left:463px;}
+.rune-page .runeSlot21 {top:6px;left:550px;}
+.rune-page .runeSlot22 {top:53px;left:431px;}
+.rune-page .runeSlot23 {top:40px;left:507px;}
+.rune-page .runeSlot24 {top:40px;left:599px;}
+.rune-page .runeSlot25 {top:87px;left:482px;}
+.rune-page .runeSlot26 {top:79px;left:555px;}
+.rune-page .runeSlot27 {top:133px;left:576px;}
+	
+.rune-page .runeSlot28 {top:35px;left:26px;}
+.rune-page .runeSlot29 {top:224px;left:182px;}
+.rune-page .runeSlot30 {top:159px;left:413px;}
+
+.rune-page .runeSlot1.empty,.rune-page .runeSlot2.empty,.rune-page .runeSlot3.empty,.rune-page .runeSlot4.empty,.rune-page .runeSlot5.empty,.rune-page .runeSlot6.empty,.rune-page .runeSlot7.empty,.rune-page .runeSlot8.empty,.rune-page .runeSlot9.empty {
+    width: 48px;
+    height: 54px;
+    background-image: url(img/mark.png);
+    background-size: 48px;
+}
+.rune-page .runeSlot10.empty,.rune-page .runeSlot11.empty,.rune-page .runeSlot12.empty,.rune-page .runeSlot13.empty,.rune-page .runeSlot14.empty,.rune-page .runeSlot15.empty,.rune-page .runeSlot16.empty,.rune-page .runeSlot17.empty,.rune-page .runeSlot18.empty {
+    width: 48px;
+    height: 54px;
+    background-image: url(img/seal.png);
+    background-size: 48px;
+}
+.rune-page .runeSlot19.empty,.rune-page .runeSlot20.empty,.rune-page .runeSlot21.empty,.rune-page .runeSlot22.empty,.rune-page .runeSlot23.empty,.rune-page .runeSlot24.empty,.rune-page .runeSlot25.empty,.rune-page .runeSlot26.empty,.rune-page .runeSlot27.empty {
+    width: 48px;
+    height: 54px;
+    background-image: url(img/glyph.png);
+    background-size: 48px;
+}
+.rune-page .runeSlot28.empty,
+.rune-page .runeSlot29.empty,
+.rune-page .runeSlot30.empty {
+    width: 96px;
+    height: 96px;
+    background-image: url(img/quintessence.png);
+    background-size: 96px;
+}
+
+.statisticsList-wrapper{position:absolute;top:0;right:0;bottom:0;left:656px;overflow:auto;}
+.statisticsList-wrapper>.item{display:table;}
+.statisticsList-wrapper>.item>.image,.statisticsList-wrapper>.item>.text,.statisticsList-wrapper>.item>.count{display:table-cell;padding:10px;vertical-align:middle;}
+.statisticsList-wrapper>.item>.image img{width:50px;}
+
+.statisticsList-wrapper>.item>.text>.rune-name,.statisticsList-wrapper>.item>.count{font-weight:bold;}
+.statisticsList-wrapper>.item>.count{font-size:18px;}
+.statisticsList-wrapper>.item>.text>.rune-description{font-size:11px;}
+
+/* mastery */
+.masterypage-wrap{overflow: hidden;float: left;}
+.masterypage-wrap>.mastery-tree{height:477px;width:274px;float:left;}
+.masterypage-wrap>.mastery-tree>.mastery-label{font-weight:bold;color:#eee;text-align:center;padding:20px 20px;font-size:18px;}
+.masterypage-wrap>.mastery-tree.ferocity{background-image:url(img/mastery_s6_ferocity_bg.jpg);}
+.masterypage-wrap>.mastery-tree.cunning{background-image:url(img/mastery_s6_cunning_bg.jpg);}
+.masterypage-wrap>.mastery-tree.resolve{background-image:url(img/mastery_s6_resolve_bg.jpg);}
+.masterypage-wrap>.mastery-tree>.mastery-row{position:relative;text-align:center;}
+.masterypage-wrap>.mastery-tree>.mastery-row>.mastery-slot{height:49px;width:49px;margin-top:15px;display:inline-block;position:relative;border:2px solid gray;border-radius: 4px;}
+.masterypage-wrap>.mastery-tree>.mastery-row>.mastery-slot.active{border:2px solid gold;}
+.masterypage-wrap>.mastery-tree>.mastery-row>.spacer{width:85px;display:inline-block;}
+
+.mastery-rank{background-color: black;border: 1px solid gray;border-radius: 2px;color:gray;height:20px;left:8px;position:absolute;text-align:center;top:35px;width:30px;}
+.masterypage-wrap>.mastery-tree>.mastery-row>.mastery-slot.active>.mastery-rank{border-color:yellow;color:white;}
+
+.mastery-row>div[class*="mastery-"]{background-repeat:repeat;background-attachment:scroll;background-position:0% 0%;background-size:100% 100%;}
+.mastery-row>.mastery-6111{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6111.png);}
+.mastery-row>.mastery-6114{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6114.png);}
+.mastery-row>.mastery-6121{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6121.png);}
+.mastery-row>.mastery-6122{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6122.png);}
+.mastery-row>.mastery-6131{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6131.png);}
+.mastery-row>.mastery-6134{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6134.png);}
+.mastery-row>.mastery-6141{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6141.png);}
+.mastery-row>.mastery-6142{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6142.png);}
+.mastery-row>.mastery-6151{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6151.png);}
+.mastery-row>.mastery-6154{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6154.png);}
+.mastery-row>.mastery-6161{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6161.png);}
+.mastery-row>.mastery-6162{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6162.png);}
+.mastery-row>.mastery-6164{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6164.png);}
+
+.mastery-row>.mastery-6311{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6311.png);}
+.mastery-row>.mastery-6312{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6312.png);}
+.mastery-row>.mastery-6321{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6321.png);}
+.mastery-row>.mastery-6322{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6322.png);}
+.mastery-row>.mastery-6323{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6323.png);}
+.mastery-row>.mastery-6331{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6331.png);}
+.mastery-row>.mastery-6332{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6332.png);}
+.mastery-row>.mastery-6342{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6342.png);}
+.mastery-row>.mastery-6343{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6343.png);}
+.mastery-row>.mastery-6351{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6351.png);}
+.mastery-row>.mastery-6352{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6352.png);}
+.mastery-row>.mastery-6361{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6361.png);}
+.mastery-row>.mastery-6362{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6362.png);}
+.mastery-row>.mastery-6363{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6363.png);}
+
+.mastery-row>.mastery-6211{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6211.png);}
+.mastery-row>.mastery-6212{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6212.png);}
+.mastery-row>.mastery-6221{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6221.png);}
+.mastery-row>.mastery-6223{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6223.png);}
+.mastery-row>.mastery-6231{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6231.png);}
+.mastery-row>.mastery-6232{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6232.png);}
+.mastery-row>.mastery-6241{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6241.png);}
+.mastery-row>.mastery-6242{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6242.png);}
+.mastery-row>.mastery-6251{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6251.png);}
+.mastery-row>.mastery-6252{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6252.png);}
+.mastery-row>.mastery-6261{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6261.png);}
+.mastery-row>.mastery-6262{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6262.png);}
+.mastery-row>.mastery-6263{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/6263.png);}
+/*mastery gray*/
+.mastery-row>.mastery-6111.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6111.png);}
+.mastery-row>.mastery-6114.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6114.png);}
+.mastery-row>.mastery-6121.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6121.png);}
+.mastery-row>.mastery-6122.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6122.png);}
+.mastery-row>.mastery-6131.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6131.png);}
+.mastery-row>.mastery-6134.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6134.png);}
+.mastery-row>.mastery-6141.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6141.png);}
+.mastery-row>.mastery-6142.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6142.png);}
+.mastery-row>.mastery-6151.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6151.png);}
+.mastery-row>.mastery-6154.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6154.png);}
+.mastery-row>.mastery-6161.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6161.png);}
+.mastery-row>.mastery-6162.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6162.png);}
+.mastery-row>.mastery-6164.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6164.png);}
+
+.mastery-row>.mastery-6311.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6311.png);}
+.mastery-row>.mastery-6312.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6312.png);}
+.mastery-row>.mastery-6321.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6321.png);}
+.mastery-row>.mastery-6322.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6322.png);}
+.mastery-row>.mastery-6323.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6323.png);}
+.mastery-row>.mastery-6331.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6331.png);}
+.mastery-row>.mastery-6332.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6332.png);}
+.mastery-row>.mastery-6342.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6342.png);}
+.mastery-row>.mastery-6343.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6343.png);}
+.mastery-row>.mastery-6351.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6351.png);}
+.mastery-row>.mastery-6352.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6352.png);}
+.mastery-row>.mastery-6361.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6361.png);}
+.mastery-row>.mastery-6362.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6362.png);}
+.mastery-row>.mastery-6363.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6363.png);}
+
+.mastery-row>.mastery-6211.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6211.png);}
+.mastery-row>.mastery-6212.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6212.png);}
+.mastery-row>.mastery-6221.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6221.png);}
+.mastery-row>.mastery-6223.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6223.png);}
+.mastery-row>.mastery-6231.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6231.png);}
+.mastery-row>.mastery-6232.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6232.png);}
+.mastery-row>.mastery-6241.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6241.png);}
+.mastery-row>.mastery-6242.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6242.png);}
+.mastery-row>.mastery-6251.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6251.png);}
+.mastery-row>.mastery-6252.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6252.png);}
+.mastery-row>.mastery-6261.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6261.png);}
+.mastery-row>.mastery-6262.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6262.png);}
+.mastery-row>.mastery-6263.gray{background-image:url(http://ddragon.leagueoflegends.com/cdn/5.24.2/img/mastery/gray_6263.png);}
+
+/* Champion stats table */
+.champion-stats-table{border: 1px solid #cdd2d2;border-radius: 2px;box-shadow: 0 1px #dcdfdf;white-space:nowrap;}
+
+.champion-stats-table tbody{border:1px solid #bbb;border-top:none;}
+.champion-stats-table>thead>tr>th {
+	background: #f2f2f2 none repeat scroll 0 0;
+    border-bottom: 1px solid #cdd2d2;
+    color: #222;
+    font-size: 12px;
+    font-weight: bold;
+    height: 54px;
+    text-align: center;
+}
+.champion-stats-table>tbody>tr>td{
+	background: #f2f2f2 none repeat scroll 0 0;
+	border-bottom: 1px solid #cdd2d2;
+    color: #555;
+    font-size: 12px;
+    font-weight: bold;
+    height: 52px;}
+
+.champion-stats-table>thead>tr>th, .champion-stats-table>tbody>tr>td{vertical-align:middle;}
+.champion-stats-table>tbody>tr>td a{text-decoration:none;}
+.champion-stats-table>tbody>tr>td.value{text-align:center;}
+
+/* League */
+.league-wrap{font-size:18px;text-align:center;}
+.league-wrap .nav-pills > li > a{width:60px;font-size:16px;text-align:center;}
+
+.league-info{text-align:left;}
+.league-info>.league-tier{font-size:36px;color:#242929;font-weight:bold;margin-bottom:15px;}
+.league-info>.league-name{font-size:22px;color:#555e5e;margin-bottom:20px;}
+
+.league-table{border: 1px solid #cdd2d2;border-radius: 2px;box-shadow: 0 1px #dcdfdf;white-space:nowrap;}
+.league-table>thead>tr>th {
+	background: #f2f2f2 none repeat scroll 0 0;
+    border-bottom: 1px solid #cdd2d2;
+    color: #222;
+    height: 54px;
+    text-align: center;
+	vertical-align:middle;
+}
+.league-table>tbody>tr>td{
+	background: #f2f2f2 none repeat scroll 0 0;
+	border-bottom: 1px solid #cdd2d2;
+    color: #555;
+}
+.leaguepage-wrap td.champion-image{text-align:left;}
+.leaguepage-wrap td.champion-image img{height:48px;width:48px;margin-right:10px;}
+
+.leaguepage-wrap tr>td.value{text-align:center;vertical-align:middle;}
+.leaguepage-wrap tr>td a{color:#555e5e;}
+.emblem {display: table-cell;width: 30px;}
+.emblem-off{opacity: 0.3;}
+
+/**/
+.livegame-wrap{vertical-align:middle;border:1px solid #cdd2d2;display:none;}
+.livegame-wrap .livegame-header{padding:10px;display: flex;justify-content: space-between;}
+.livegame-wrap .livegame-header .title{line-height:30px}
+.livegame-wrap .livegame-header span{font-weight:bold;}
+.livegame-wrap .livegame-header small{border-left:1px solid #bec4c4;margin-left:6px;padding-left:6px;}
+.livegame-wrap .livegame-header .bans{display:flex;justify-content:center;}
+.livegame-wrap .livegame-header .bans .ban{padding-left:10px;}
+.livegame-wrap .livegame-header .bans .ban-red{}
+.livegame-wrap .livegame-header .bans .ban-red img{border-top:3px solid #8813E1;}
+.livegame-wrap .livegame-header .bans .ban-blue img{border-top:3px solid #238FFE;}
+.livegame-wrap .livegame-header .bans img{height:32px;width:32px;margin: 0px 2px;}
+
+.livegame-wrap th{text-align:center;}
+.livegame-wrap .table{background-color:#f2f2f2;}
+.livegame-wrap .table > tbody > tr > td{vertical-align:middle;}
+.livegame-wrap .table > tbody > tr > td>div{margin: 0 auto;}
+.livegame-wrap .champion-wrap{display:flex;}
+.livegame-wrap .champion-wrap .champion{margin-right:4px;}
+.livegame-wrap .champion-wrap .champion img{height:24px;width:24px}
+.livegame-wrap .champion-wrap .spells{height:24px;position:relative;width:12px;}
+.livegame-wrap .champion-wrap .spells img{position:absolute;height:12px;width:12px}
+.livegame-wrap .champion-wrap .spells img.spell1{top:0;left:0;}
+.livegame-wrap .champion-wrap .spells img.spell2{bottom:0;left:0;}
+.livegame-wrap .champion-wrap .name a{vertical-align:middle;padding-left:3px;color:#242929;line-height:24px;font-weight: bold;overflow: hidden;text-decoration: none;text-overflow: ellipsis;white-space: nowrap;}
+.livegame-wrap .division-wrap img, .livegame-wrap .division img{height:32px; width:32px;}
+
+.livegame-wrap .seasoninfo-wrap{display:table;}
+.livegame-wrap .division-wrap, .livegame-wrap .win-rate {display:table-cell;vertical-align: middle;padding:0 4px;}
+.livegame-wrap .division-wrap{line-height: 32px;text-align: left;white-space: nowrap;width: 200px;}
+
+.livegame-wrap .win-rate, .livegame-wrap .seasonChampionInfo-wrap{font-size:11px;}
+.livegame-wrap .win-rate .progress{border: 1px solid #b8bfbf;height:8px;width:100px;margin:0 auto;}
+.livegame-wrap .win-rate .progress .fill{background: #1DB8FF none repeat scroll 0 0;border-color: #288b8b;height:100%;}
+.livegame-wrap .seasonChampionInfo-wrap{display:table;}
+.livegame-wrap .kda-wrap, .livegame-wrap .winRate-wrap {display:table-cell;vertical-align: middle;padding:0 5px;}
+.livegame-wrap .winRate-wrap .ratio {display:block;}
+.livegame-wrap .win-rate .ratio, .livegame-wrap .winRate-wrap .ratio, .livegame-wrap .kda-wrap>.kda>.value{font-weight:bold;}
+.livegame-wrap .kda-wrap>.kda-details{}
+
+.livegame-wrap .runeMastery{border:1px solid #cdd2d2;border-radius:2px;display:inline-block;background-color:#ededed;padding:4px;}
+.livegame-wrap .gamelive-RuneMasteryInfo{display:flex;}
+.livegame-wrap .rune-info{flex-grow: 1;}
+.livegame-wrap .rune-info>.item{border-bottom:1px solid gray;text-align:left;padding:5px 10px;}
+.livegame-wrap .rune-info span.desc{color: #000;font-size: 14px;}
+.livegame-wrap .rune-info span.value{font-weight: bold;color: #1e1e1e;font-size: 16px;}
+
+/* Leaderboard */
+#leaderboards-wrap{font-size:18px;text-align:center;padding:50px 0;}
+
+.leaderboards-table{border: 1px solid #cdd2d2;border-radius: 2px;box-shadow: 0 1px #dcdfdf;white-space:nowrap;}
+.leaderboards-table>thead>tr>th {
+	background: #f2f2f2 none repeat scroll 0 0;
+    border-bottom: 1px solid #cdd2d2;
+    color: #222;
+    height: 54px;
+    text-align: center;
+	vertical-align:middle;
+}
+.leaderboards-table>tbody>tr>td{
+	background: #f2f2f2 none repeat scroll 0 0;
+	border-bottom: 1px solid #cdd2d2;
+    color: #555;
+}
+.leaderboards-table td.champion-image{text-align:left;}
+.leaderboards-table td.champion-image img{height:36px;width:36px;margin-right:10px;}
+
+.leaderboards-table tr>td.value{text-align:center;vertical-align:middle;}
+.leaderboards-table tr>td a{color:#555e5e;}
+
+/* Footer */
+#footer{
+	background-color:#151515;
+	color:#F8F8F8;
+	position:absolute;
+	bottom:0;
+	width: 100%;
+	height:60px;
+}

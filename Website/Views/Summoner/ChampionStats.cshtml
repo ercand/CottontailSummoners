@@ -1,0 +1,89 @@
+﻿@using Website.Helpers;
+@model Website.Models.ViewModels.SummonerChampionStatsViewModel
+
+<div class="col-md-12">
+    <ul class="nav nav-pills nav-tabs navbs">
+        @{
+            bool firstTab = true;
+            int count = 1;
+            foreach (var item in Model.Stats)
+            {
+                string active = null;
+                if (firstTab) { active = "active"; firstTab = false; }
+                // @Html.Raw("<li " + active + " ><a data-toggle=\"pill\" href=\"#runepage-" + count + "\">" + count + " | " + item.Name + "</a></li>");
+                <li class="@active"><a data-toggle="pill" href="#champstatspage-@count">@EnumsToFriendlyString.SeasonIntToString(item.Key)</a></li>
+                count++;
+            }
+        }
+    </ul>
+    <div class="tab-content">
+        @{
+            int currentPage = 1;
+            bool firstTabContent = true;
+            foreach (var season in Model.Stats)
+            {
+                string currentActive = null;
+
+                if (firstTabContent) { currentActive = "in active"; firstTabContent = false; }
+
+                <div id="champstatspage-@currentPage" class="tab-pane fade @currentActive">
+                    @if (season.Value.Count==1)
+                    {
+                        <p style="text-align:center;">No stats found</p>
+                        continue;
+                    }
+                    <table class="table champion-stats-table tablesorter">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Champion</th>
+                                    <th class="text-center">Games</th>
+                                    <th class="text-center">Wins-Losses</th>
+                                    <th class="text-center">KDA</th>
+                                    <th class="text-center">Gold</th>
+                                    <th class="text-center">Minion Killed</th>
+                                    <th class="text-center">Max Kills</th>
+                                    <th class="text-center">Max Deaths</th>
+                                    <th class="text-center">Damage Dealt</th>
+                                    <th class="text-center">Damage Taken</th>
+                                    <th class="text-center">Double Kills</th>
+                                    <th class="text-center">Triple Kills</th>
+                                    <th class="text-center">Quadra Kills</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var stats in season.Value)
+                                {
+                                    
+                                    if (String.IsNullOrEmpty(stats.ChampionName))
+                                    {
+                                        continue;
+                                    }
+                                    <tr>
+                                        <td class="champion-image"><a><img class="img-circle tip" width="32" height="32" src="@stats.ChampionImageUrl" title="" data-toggle="tooltip" data-original-title="lo sceriffo di Piltover"> @stats.ChampionName</a></td>
+                                        <td class="value">@stats.GamePlayed</td>
+                                        <td class="value"><span class="game-wins">@stats.Wins</span> - <span class="game-losses">@stats.Losses</span> (@((int)(((float)stats.Wins/ (float)stats.GamePlayed)*100.0) + "%"))</td>
+                                        <td class="value"><span class="game-wins">@stats.AvgKillsTextual</span> / <span class="game-losses">@stats.AvgDeathsTextual</span> / @stats.AvgAssistsTextual <br /> (@stats.KdaTextual)</td>
+                                        <td class="value">@stats.AvgGoldEarnedTextual</td>
+                                        <td class="value">@stats.AvgMinionsKilledTextual</td>
+                                        <td class="value">@stats.MaxKills</td>
+                                        <td class="value">@stats.MaxDeaths</td>
+                                        <td class="value">@stats.AvgDamageDealtTextual</td>
+                                        <td class="value">@stats.AvgDamageTakenTextual</td>
+                                        <td class="value">@stats.DoubleKills</td>
+                                        <td class="value">@stats.TripleKills</td>
+                                        <td class="value">@stats.QuadraKills</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                </div>
+                currentPage++;
+            }
+        }
+
+    </div>
+    <script>
+        $('table').tablesorter();
+    </script>
+</div>

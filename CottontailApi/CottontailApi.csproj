@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7B8F968D-45D2-43CF-B23F-B18C10D9C896}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CottontailApi</RootNamespace>
+    <AssemblyName>CottontailApi</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commons\CustomJsonConverter\GameModeTypeJsonConverter.cs" />
+    <Compile Include="Commons\CustomJsonConverter\GameQueueTypeJsonConverter.cs" />
+    <Compile Include="Commons\CustomJsonConverter\GameTypeJsonConverter.cs" />
+    <Compile Include="Commons\CustomJsonConverter\LeagueQueueTypeJsonConverter.cs" />
+    <Compile Include="Commons\CustomJsonConverter\MapTypeJsonConverter.cs" />
+    <Compile Include="Commons\CustomJsonConverter\PlatformJsonConverter.cs" />
+    <Compile Include="Commons\CustomJsonConverter\TierTypeJsonConverter.cs" />
+    <Compile Include="Commons\Enums.cs" />
+    <Compile Include="Commons\GenericConverter.cs" />
+    <Compile Include="Commons\RiotSpectatorEndPoint.cs" />
+    <Compile Include="Commons\StaticDataEnums.cs" />
+    <Compile Include="Dto\ChampionMastery\ChampionMasteryDto.cs" />
+    <Compile Include="Dto\Champion\ChampionDto.cs" />
+    <Compile Include="Dto\Champion\ChampionListDto.cs" />
+    <Compile Include="Dto\League\LeagueItemDto.cs" />
+    <Compile Include="Dto\League\LeagueListDto.cs" />
+    <Compile Include="Dto\League\LeaguePositionDto.cs" />
+    <Compile Include="Dto\League\MiniSeriesDto.cs" />
+    <Compile Include="Dto\LolStatus\Incident.cs" />
+    <Compile Include="Dto\LolStatus\Message.cs" />
+    <Compile Include="Dto\LolStatus\Service.cs" />
+    <Compile Include="Dto\LolStatus\ShardStatus.cs" />
+    <Compile Include="Dto\LolStatus\Translation.cs" />
+    <Compile Include="Dto\Masteries\MasteryDto.cs" />
+    <Compile Include="Dto\Masteries\MasteryPageDto.cs" />
+    <Compile Include="Dto\Masteries\MasteryPagesDto.cs" />
+    <Compile Include="Dto\Match\MatchDto.cs" />
+    <Compile Include="Dto\Match\MatchEventDto.cs" />
+    <Compile Include="Dto\Match\MatchFrameDto.cs" />
+    <Compile Include="Dto\Match\MatchlistDto.cs" />
+    <Compile Include="Dto\Match\MatchParticipantFrameDto.cs" />
+    <Compile Include="Dto\Match\MatchReferenceDto.cs" />
+    <Compile Include="Dto\Match\MatchTimelineDto.cs" />
+    <Compile Include="Dto\Match\ParticipantIdentityDto.cs" />
+    <Compile Include="Dto\Match\PlayerDto.cs" />
+    <Compile Include="Dto\Match\MatchPositionDto.cs" />
+    <Compile Include="Dto\Match\TeamStatsDto.cs" />
+    <Compile Include="Dto\Match\TeamBansDto.cs" />
+    <Compile Include="Dto\Match\MasteryDto.cs" />
+    <Compile Include="Dto\Match\ParticipantDto.cs" />
+    <Compile Include="Dto\Match\ParticipantStatsDto.cs" />
+    <Compile Include="Dto\Match\ParticipantTimelineDto.cs" />
+    <Compile Include="Dto\Match\RuneDto.cs" />
+    <Compile Include="Dto\Runes\RunePageDto.cs" />
+    <Compile Include="Dto\Runes\RunePagesDto.cs" />
+    <Compile Include="Dto\Runes\RuneSlotDto.cs" />
+    <Compile Include="Dto\Spectator\BannedChampion.cs" />
+    <Compile Include="Dto\Spectator\CurrentGameInfo.cs" />
+    <Compile Include="Dto\Spectator\CurrentGameParticipant.cs" />
+    <Compile Include="Dto\Spectator\FeaturedGameInfo.cs" />
+    <Compile Include="Dto\Spectator\FeaturedGames.cs" />
+    <Compile Include="Dto\Spectator\Mastery.cs" />
+    <Compile Include="Dto\Spectator\Observer.cs" />
+    <Compile Include="Dto\Spectator\Participant.cs" />
+    <Compile Include="Dto\Spectator\Rune.cs" />
+    <Compile Include="Dto\StaticData\BasicDataDto.cs" />
+    <Compile Include="Dto\StaticData\InventoryDataStatsDto.cs" />
+    <Compile Include="Dto\StaticData\BlockDto.cs" />
+    <Compile Include="Dto\StaticData\BlockItemDto.cs" />
+    <Compile Include="Dto\StaticData\ChampionDto.cs" />
+    <Compile Include="Dto\StaticData\ChampionListDto.cs" />
+    <Compile Include="Dto\StaticData\ChampionSpellDto.cs" />
+    <Compile Include="Dto\StaticData\GoldDto.cs" />
+    <Compile Include="Dto\StaticData\GroupDto.cs" />
+    <Compile Include="Dto\StaticData\IconDataDto.cs" />
+    <Compile Include="Dto\StaticData\ImageDto.cs" />
+    <Compile Include="Dto\StaticData\InfoDto.cs" />
+    <Compile Include="Dto\StaticData\ItemDto.cs" />
+    <Compile Include="Dto\StaticData\ItemListDto.cs" />
+    <Compile Include="Dto\StaticData\ItemTreeDto.cs" />
+    <Compile Include="Dto\StaticData\LanguageStringsDto.cs" />
+    <Compile Include="Dto\StaticData\LevelTipDto.cs" />
+    <Compile Include="Dto\StaticData\MapDataDto.cs" />
+    <Compile Include="Dto\StaticData\MapDetailsDto.cs" />
+    <Compile Include="Dto\StaticData\MasteryDto.cs" />
+    <Compile Include="Dto\StaticData\MasteryListDto.cs" />
+    <Compile Include="Dto\StaticData\MasteryTreeDto.cs" />
+    <Compile Include="Dto\StaticData\MasteryTreeItemDto.cs" />
+    <Compile Include="Dto\StaticData\MasteryTreeListDto.cs" />
+    <Compile Include="Dto\StaticData\MetaDataDto.cs" />
+    <Compile Include="Dto\StaticData\PassiveDto.cs" />
+    <Compile Include="Dto\StaticData\ProfileIconDataDto.cs" />
+    <Compile Include="Dto\StaticData\RealmDto.cs" />
+    <Compile Include="Dto\StaticData\RecommendedDto.cs" />
+    <Compile Include="Dto\StaticData\RuneDto.cs" />
+    <Compile Include="Dto\StaticData\RuneListDto.cs" />
+    <Compile Include="Dto\StaticData\SkinDto.cs" />
+    <Compile Include="Dto\StaticData\SpellVarsDto.cs" />
+    <Compile Include="Dto\StaticData\StatsDto.cs" />
+    <Compile Include="Dto\StaticData\SummonerSpellDto.cs" />
+    <Compile Include="Dto\StaticData\SummonerSpellListDto.cs" />
+    <Compile Include="Exceptions\RiotApiException.cs" />
+    <Compile Include="Dto\Summoner\SummonerDto.cs" />
+    <Compile Include="Http\Interfaces\IRateLimitedRiotApiRequester.cs" />
+    <Compile Include="Http\Interfaces\IRiotApiRequester.cs" />
+    <Compile Include="Http\RateLimitedRiotApiRequester.cs" />
+    <Compile Include="Http\RateLimiter.cs" />
+    <Compile Include="Http\RequesterBase.cs" />
+    <Compile Include="Http\RiotApiRequester.cs" />
+    <Compile Include="IRiotApiClient.cs" />
+    <Compile Include="IStaticRiotApiClient.cs" />
+    <Compile Include="LogManager\Logger.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RiotApiClient.cs" />
+    <Compile Include="StaticRiotApiClient.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EndPoints\" />
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
