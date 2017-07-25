@@ -243,3 +243,4 @@ ModelManifest.xml
 
 # WebConfig
 /WebSite/Web.config
+/CottontailApiUnitTest/App.config
