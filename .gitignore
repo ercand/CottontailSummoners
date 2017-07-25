@@ -242,5 +242,5 @@ ModelManifest.xml
 .fake/
 
 # WebConfig
-/WebSite/Web.config
-/CottontailApiUnitTest/App.config
+WebSite/Web.config
+CottontailApiUnitTest/App.config
